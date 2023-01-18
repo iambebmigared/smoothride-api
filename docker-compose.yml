@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  smoothrideapi:
+    build:
+      context: .
+      args:
+        progress: plain
+    image: smoothrideapi
+    ports:
+      - 60:80
+    volumes:
+      - ./:/var/www/html
+      - ./docker/vhost.conf:/etc/apache2/sites-available/000-default.conf
+#      - ./../docker/logs/:/var/log
+    env_file:
+      - ./.env
+    container_name: smoothrideapi
+    tty: true
